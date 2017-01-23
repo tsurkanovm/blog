@@ -16,6 +16,26 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
+            new Sonata\CoreBundle\SonataCoreBundle(),
+//            new Sonata\MarkItUpBundle\SonataMarkItUpBundle(),
+            new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
+            new Sonata\NewsBundle\SonataNewsBundle(),
+            new Sonata\UserBundle\SonataUserBundle(),
+            new Sonata\MediaBundle\SonataMediaBundle(),
+            new Sonata\AdminBundle\SonataAdminBundle(),
+            new Sonata\IntlBundle\SonataIntlBundle(),
+            new Sonata\FormatterBundle\SonataFormatterBundle(),
+            new Sonata\ClassificationBundle\SonataClassificationBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
+            new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
+            new Application\Sonata\NewsBundle\ApplicationSonataNewsBundle(),
+            new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
+            new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
+            new Application\Sonata\ClassificationBundle\ApplicationSonataClassificationBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
