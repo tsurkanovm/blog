@@ -29,7 +29,7 @@ sonata_media:
     cdn:
         # define the public base url for the uploaded media
         server:
-            path:      %sonata_media.cdn.host%
+            path:      %kernel.root_dir%/../web/uploads/media
 
     filesystem:
         # define where the uploaded file will be stored
