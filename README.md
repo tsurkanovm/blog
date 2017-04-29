@@ -1,4 +1,5 @@
-blog
+Knowledge base web application. 
 ====
 
-A Symfony project created on December 27, 2016, 4:04 pm.
+A Symfony project with Sonata modules.
+

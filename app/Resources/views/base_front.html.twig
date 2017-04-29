@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+            <link href="{{ asset('bundles/applicationsonatanews/sonata_front_css.css') }}" rel="stylesheet">
+        {% endblock %}
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+    <div class="container">
+        {% block body %}{% endblock %}
+        {% block content %}{% endblock %}
+    </div>
+        {% block javascripts %}
+            <script src="{{ asset('bundles/applicationsonatanews/sonata_front_js.js') }}"></script>
+        {% endblock %}
+    </body>
+</html>

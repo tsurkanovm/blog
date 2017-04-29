@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: sonata_admin.yml }
     - { resource: sonata_news.yml }
     - { resource: sonata_media.yml }
     - { resource: sonata_formater.yml }
