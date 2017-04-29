@@ -4,6 +4,7 @@ imports:
     - { resource: services.yml }
     - { resource: sonata_admin.yml }
     - { resource: sonata_news.yml }
+    - { resource: sonata_classification.yml }
     - { resource: sonata_media.yml }
     - { resource: sonata_formater.yml }
     - { resource: fos_user.yml }
@@ -63,6 +64,17 @@ doctrine:
         auto_generate_proxy_classes: "%kernel.debug%"
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
+#        entity_managers:
+#                    default:
+#                        #metadata_cache_driver: apc
+#                        #query_cache_driver: apc
+#                        #result_cache_driver: apc
+#                        mappings:
+#                            ApplicationSonataNewsBundle: ~
+#                            SonataNewsBundle: ~
+#                            ApplicationSonataClassificationBundle: ~
+#                            SonataClassificationBundle: ~
+#                            ApplicationSonataUserBundle: ~
 
 # Swiftmailer Configuration
 swiftmailer:
