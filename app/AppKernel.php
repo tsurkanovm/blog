@@ -35,7 +35,9 @@ class AppKernel extends Kernel
             new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
             new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
             new Application\Sonata\ClassificationBundle\ApplicationSonataClassificationBundle(),
-            new Sonata\BlockBundle\SonataBlockBundle()
+            new Sonata\BlockBundle\SonataBlockBundle(),
+            new Gedmo\DoctrineExtensions(),
+            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

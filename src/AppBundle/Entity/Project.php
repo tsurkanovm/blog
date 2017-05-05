@@ -6,8 +6,8 @@ use Application\Sonata\MediaBundle\Entity\Media;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\PersistentCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Project
@@ -23,7 +23,7 @@ class Project
     /**
      * Primary key
      *
-     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      *
      * @var integer $id
@@ -38,7 +38,7 @@ class Project
      *
      * @var \DateTime
      */
-    private $createdAt;
+    private $created;
 
     /**
      * Updated at
@@ -48,55 +48,69 @@ class Project
      *
      * @var \DateTime
      */
-    private $updatedAt;
+    private $updated;
 
     /**
-     * @var string
+     * @ORM\Column(length=40)
+     * @Assert\NotBlank
+     *
+     * @var string name
      */
     private $name;
 
     /**
-     * @var string
+     * @ORM\Column(type="text", nullable=true)
+     *
+     * @var string description
      */
     private $description;
 
     /**
-     * @var string
+     * @ORM\Column(type="text", nullable=true)
+     *
+     * @var string challenge
      */
     private $challenge;
 
     /**
-     * @var string
-     */
-    private $slug;
-
-    /**
-     * @var integer
+     * @ORM\Column(type="smallint")
+     *
+     * @var integer weight
      */
     private $weight;
 
     /**
-     * @var boolean
+     * @ORM\Column(type="boolean")
+     *
+     * @var bool status
      */
     private $status;
 
     /**
-     * @var Collection|Solution[]
+     * @ORM\ManyToMany(targetEntity="Solution")
+     *
+     * @var ArrayCollection
      */
     private $solutions;
 
     /**
-     * @var boolean
+     * @ORM\Column(type="boolean", name="display_on_home_page")
+     *
+     * @var bool status
      */
     private $displayOnHome;
 
     /**
-     * @var Media
+     * @ORM\OneToOne(targetEntity="Media")
+     *
+     * @var Media imageTemplate
      */
     private $imageTemplate;
 
     /**
-     * @var Media
+     * @ORM\OneToOne(targetEntity="Media")
+     *
+     * @var Media imageLogo
      */
     private $imageLogo;
 
@@ -129,7 +143,7 @@ class Project
      */
     public function setCreatedAt($createdAt)
     {
-        $this->createdAt = $createdAt;
+        $this->created = $createdAt;
 
         return $this;
     }
@@ -139,7 +153,7 @@ class Project
      */
     public function getCreatedAt()
     {
-        return $this->createdAt;
+        return $this->created;
     }
 
     /**
@@ -149,7 +163,7 @@ class Project
      */
     public function setUpdatedAt($updatedAt)
     {
-        $this->updatedAt = $updatedAt;
+        $this->updated = $updatedAt;
 
         return $this;
     }
@@ -159,7 +173,7 @@ class Project
      */
     public function getUpdatedAt()
     {
-        return $this->updatedAt;
+        return $this->updated;
     }
 
     /**
@@ -220,46 +234,6 @@ class Project
     public function getChallenge()
     {
         return $this->challenge;
-    }
-
-    /**
-     * @param string $benefits
-     *
-     * @return Project
-     */
-    public function setBenefits($benefits)
-    {
-        $this->benefits = $benefits;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBenefits()
-    {
-        return $this->benefits;
-    }
-
-    /**
-     * @param string $slug
-     *
-     * @return Project
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSlug()
-    {
-        return $this->slug;
     }
 
     /**
@@ -336,60 +310,6 @@ class Project
     }
 
     /**
-     * @param Tag $tag
-     *
-     * @return Project
-     */
-    public function addTag(Tag $tag)
-    {
-        if (!$this->tags->contains($tag)) {
-            $this->tags->add($tag);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param Tag $tag
-     *
-     * @return $this
-     */
-    public function removeTag(Tag $tag)
-    {
-        $this->tags->removeElement($tag);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Tag[]
-     */
-    public function getTags()
-    {
-        return $this->tags;
-    }
-
-    /**
-     * @param string $url
-     *
-     * @return Project
-     */
-    public function setUrl($url)
-    {
-        $this->url = $url;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUrl()
-    {
-        return $this->url;
-    }
-
-    /**
      * @param boolean $displayOnHome
      *
      * @return Project
@@ -449,217 +369,4 @@ class Project
         return $this->imageLogo;
     }
 
-    /**
-     * @param ProjectFeedback $projectFeedback
-     *
-     * @return Project
-     */
-    public function addProjectFeedback(ProjectFeedback $projectFeedback)
-    {
-        if (!$this->projectFeedbacks->contains($projectFeedback)) {
-            $projectFeedback->setProject($this);
-            $this->projectFeedbacks->add($projectFeedback);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param ProjectFeedback $projectFeedback
-     *
-     * @return $this
-     */
-    public function removeProjectFeedback(ProjectFeedback $projectFeedback)
-    {
-        $this->projectFeedbacks->removeElement($projectFeedback);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|ProjectFeedback[]
-     */
-    public function getProjectFeedbacks()
-    {
-        return $this->projectFeedbacks;
-    }
-
-
-    /**
-     * @param boolean $showUrl
-     *
-     * @return Project
-     */
-    public function setShowUrl($showUrl)
-    {
-        $this->showUrl = $showUrl;
-
-        return $this;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function getShowUrl()
-    {
-        return $this->showUrl;
-    }
-
-    /**
-     * @param boolean $displayForCanada
-     *
-     * @return Project
-     */
-    public function setDisplayForCanada($displayForCanada)
-    {
-        $this->displayForCanada = $displayForCanada;
-
-        return $this;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function getDisplayForCanada()
-    {
-        return $this->displayForCanada;
-    }
-
-    /**
-     * @param ProjectBlockType $leftProject
-     *
-     * @return Project
-     */
-    public function addLeftProject(ProjectBlockType $leftProject)
-    {
-        if (!$this->leftProject->contains($leftProject)) {
-            $this->leftProject->add($leftProject);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param ProjectBlockType $leftProject
-     *
-     * @return $this
-     */
-    public function removeLeftProject(ProjectBlockType $leftProject)
-    {
-        $this->leftProject->removeElement($leftProject);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|ProjectBlockType[]
-     */
-    public function getLeftProject()
-    {
-        return $this->leftProject;
-    }
-
-    /**
-     * @param ProjectBlockType $rightProject
-     *
-     * @return Project
-     */
-    public function addRightProject(ProjectBlockType $rightProject)
-    {
-        if (!$this->rightProject->contains($rightProject)) {
-            $this->rightProject->add($rightProject);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param ProjectBlockType $rightProject
-     *
-     * @return $this
-     */
-    public function removeRightProject(ProjectBlockType $rightProject)
-    {
-        $this->rightProject->removeElement($rightProject);
-
-        return $this;
-    }
-
-    /**
-     * Get rightProject
-     *
-     * @return Collection|ProjectBlockType[]
-     */
-    public function getRightProject()
-    {
-        return $this->rightProject;
-    }
-
-    /**
-     * @param ProjectToPicture|EntityToPicture $picture
-     * @return Project|EntityWithPicturesAndGalleries
-     */
-    public function addPicture(EntityToPicture $picture)
-    {
-        if ($this->addPictureIfNotExist($picture)) {
-            $picture->setProject($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param EntityToGallery|ProjectToGallery $gallery
-     * @return Project|EntityWithPicturesAndGalleries
-     */
-    public function addGallery(EntityToGallery $gallery)
-    {
-        if ($this->addGalleryIfNotExist($gallery)) {
-            $gallery->setProject($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|UserProfile[]
-     */
-    public function getTeam()
-    {
-        return $this->team;
-    }
-
-    /**
-     * @param UserProfile $userProfile
-     * @return Project
-     */
-    public function addTeam(UserProfile $userProfile)
-    {
-        if (!$this->team->contains($userProfile)) {
-            $userProfile->addProject($this);
-            $this->team->add($userProfile);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param PersistentCollection $team
-     */
-    public function setTeam(PersistentCollection $team)
-    {
-        $this->team = $team;
-    }
-
-    /**
-     * @param UserProfile $userProfile
-     *
-     * @return $this
-     */
-    public function removeTeam(UserProfile $userProfile)
-    {
-        $this->team->removeElement($userProfile);
-
-        return $this;
-    }
 }
