@@ -101,14 +101,14 @@ class Project
     private $displayOnHome;
 
     /**
-     * @ORM\OneToOne(targetEntity="Media")
+     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
      *
      * @var Media imageTemplate
      */
     private $imageTemplate;
 
     /**
-     * @ORM\OneToOne(targetEntity="Media")
+     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
      *
      * @var Media imageLogo
      */

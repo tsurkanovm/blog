@@ -3,9 +3,8 @@
 namespace AppBundle\Entity;
 
 use Application\Sonata\MediaBundle\Entity\Media;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Grossum\Bundle\MainBundle\Entity\EntityTrait\DateTimeControlTrait;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Solution
@@ -36,7 +35,7 @@ class Solution
     private $name;
 
     /**
-     * @ORM\OneToOne(targetEntity="Media")
+     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
      *
      * @var Media image
      */

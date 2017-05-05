@@ -36,7 +36,6 @@ class AppKernel extends Kernel
             new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
             new Application\Sonata\ClassificationBundle\ApplicationSonataClassificationBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
-            new Gedmo\DoctrineExtensions(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle()
         );
 
