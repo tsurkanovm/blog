@@ -25,7 +25,21 @@ sonata_media:
             formats:
                 small: { width: 150 , quality: 95}
                 big:   { width: 500 , quality: 90}
-
+        projectTemplate:
+            providers:
+                - sonata.media.provider.image
+            formats:
+                default: { width: 780, height: 480, quality: 95}
+        projectLogo:
+            providers:
+                - sonata.media.provider.image
+            formats:
+                default: { width: 127, quality: 95}
+        solution:
+            providers:
+                - sonata.media.provider.image
+            formats:
+                default: { width: 86 , quality: 95}
     cdn:
         # define the public base url for the uploaded media
         server:
