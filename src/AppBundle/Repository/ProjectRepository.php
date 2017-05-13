@@ -11,5 +11,15 @@ use Doctrine\ORM\EntityRepository;
  */
 class ProjectRepository extends EntityRepository
 {
-
+    public function findMain()
+    {
+        return $this
+            ->createQueryBuilder('project')
+            ->where('project.displayOnHome = :status')
+            ->andWhere('project.status = :status')
+            ->setParameter('status' , true)
+            ->addOrderBy('project.weight', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 }
