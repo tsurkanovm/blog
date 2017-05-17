@@ -27,11 +27,14 @@ class ProjectAdmin extends AbstractAdmin
     {
         $formMapper
                 ->add('name')
+                ->add('fullName')
                 ->add('description', CKEditorType::class, [
                         'attr'  => [
                             'class' => 'shortDesc',
                         ],
                 ])
+                ->add('workDescription', CKEditorType::class)
+                ->add('myRole', CKEditorType::class)
                 ->add('challenge', CKEditorType::class)
                 ->add('imageTemplate', ModelListType::class,
                     [
@@ -61,7 +64,9 @@ class ProjectAdmin extends AbstractAdmin
                     ]
                 )
                 ->add('solutions')
-                ->add('weight')
+                ->add('weight', null, [
+                    'data' => 0
+                ])
                 ->add('status', null, [
                     'required' => false,
                 ])

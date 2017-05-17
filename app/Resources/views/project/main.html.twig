@@ -4,15 +4,14 @@
         <div class="content">
             {% for project in projects %}
                 <div class="item row">
-                    <a class="col-md-4 col-sm-4 col-xs-12" href="#" target="_blank">
-                        {#{% path project.imageLogo, 'reference' %}#}
+                    <a class="col-md-4 col-sm-4 col-xs-12" href="{{ path('project', {'id':project.id}) }}">
                         <img class="img-responsive project-image" src="{% path project.imageLogo, 'reference' %}"
                              alt="{{ project.name }}"/>
                     </a>
                     <div class="desc col-md-8 col-sm-8 col-xs-12">
-                        <h3 class="title"><a href="#" target="_blank">{{ project.name }}</a></h3>
+                        <h3 class="title">{{ project.name }}</a></h3>
                         <p>{{ project.challenge | raw }}</p>
-                        <p><a class="more-link" href="#" target="_blank"><i class="fa fa-external-link"></i> Find out
+                        <p><a class="more-link" href="{{ path('project', {'id':project.id}) }}" target="_blank"><i class="fa fa-external-link"></i> Find out
                                 more</a></p>
                     </div><!--//desc-->
                 </div><!--//item-->

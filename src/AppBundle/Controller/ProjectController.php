@@ -4,20 +4,26 @@
  */
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Project;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 
 class ProjectController extends Controller
 {
+
     /**
-     * @Route("/projects", name="projects_list")
+     * @Route("/project/{id}", requirements={"id"="\d+"}, name="project")
+     * @ParamConverter("project", class="AppBundle:Project")
      * @Method("GET")
+     *
+     * @param Project $project
+     * @return Response
      */
-    public function indexAction()
+    public function showAction(Project $project)
     {
-
-
-        return $this->render('project/index.html.twig');
+        return $this->render('project/show.html.twig', ['project' => $project]);
     }
 }
