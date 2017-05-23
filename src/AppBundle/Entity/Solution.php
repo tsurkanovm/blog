@@ -47,7 +47,7 @@ class Solution
      *
      * @return integer
      */
-    public function getId()
+    public function getId():int
     {
         return $this->id;
     }
@@ -58,7 +58,7 @@ class Solution
      * @param string $name
      * @return Solution
      */
-    public function setName($name)
+    public function setName(string $name):Solution
     {
         $this->name = $name;
 
@@ -70,7 +70,7 @@ class Solution
      *
      * @return string
      */
-    public function getName()
+    public function getName():?string
     {
         return $this->name;
     }
@@ -81,7 +81,7 @@ class Solution
      * @param Media $image
      * @return Solution
      */
-    public function setImage(Media $image = null)
+    public function setImage(Media $image = null):Solution
     {
         $this->image = $image;
 
@@ -93,12 +93,12 @@ class Solution
      *
      * @return Media
      */
-    public function getImage()
+    public function getImage():?Media
     {
         return $this->image;
     }
 
-    public function __toString()
+    public function __toString():string
     {
         return $this->getName() ? : "New Solution";
     }

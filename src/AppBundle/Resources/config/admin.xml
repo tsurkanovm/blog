@@ -24,5 +24,15 @@
             <argument>AppBundle\Entity\Solution</argument>
             <argument />
         </service>
+        <service id="app.admin.knowledge_base"
+                 class="AppBundle\Admin\KnowledgeBaseAdmin">
+            <tag name="sonata.admin"
+                 group="Application"
+                 manager_type="orm"
+                 label="Knowledge Base"/>
+            <argument />
+            <argument>AppBundle\Entity\KnowledgeBase</argument>
+            <argument />
+        </service>
     </services>
 </container>
